@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SlideShow v2</title>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            .slide-show {
+                position: relative;
+                width: 200px;
+                height: 250px;
+                overflow: hidden;
+            }
+            .slide-show .slide-roll {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                white-space: nowrap;
+                font-size: 0px;
+            }
+            .slide-show .slide-roll li {
+                margin: 0;
+                padding: 0;
+                width: 200px;
+                vertical-align: top;
+                display: inline-block;
+                *display: inline;
+            }
+            .slide-show .slide-roll img {
+                width: 200px;
+            }
+            .slide-show .slide-hand {
+                position: absolute;
+                top: 30px;
+            }
+            .slide-show .slide-hand a{
+                padding: 5px;
+                margin: 5px;
+                background: #fff;
+            }
+            .slide-show .slide-hand a.selected {
+                background: red;
+                color: #fff;
+            }
+        </style>
+        <script type="text/javascript" src="../../jquery/jquery-last.min.js"></script>
+        <script type="text/javascript" src="../../v2.js"></script>
+        <script type="text/javascript" src="../slideshow.js"  ></script>
+    </head>
+    <body data-v-app="vApp">   
+        <div>
+            <h3>SlideShow 幻灯切换组件</h3>
+            <p>幻灯切换组件按上下，左右切换幻灯内容。<br/>
+            </p>
+            <div class="slide-show" data-slideshow="v2ui" data-options="rollel:.slide-roll; handel:.slide-hand; numel:.number; prevel:.slide-prev; nextel:.slide-next; autosec:2;">
+                <a class="slide-prev">&lt;</a>
+                <a class="slide-next">&gt;</a>
+                <ul class="slide-roll">
+                    <li><img src="1.jpg" /></li><!--
+                    --><li><img src="2.jpg" /></li><!--
+                    --><li><img src="3.jpg" /></li><!--
+                    --><li><img src="4.jpg" /></li><!--
+                    --><li><img src="5.jpg" /></li>
+                </ul>
+                <div class="slide-hand">
+                    <a><span class="number">1</span></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

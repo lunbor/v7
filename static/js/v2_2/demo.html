@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>V2_2 demo</title>
+        <script type="text/javascript" src="../v2_2.js"></script>
+        <script type="text/javascript" src="../jquery.min.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h3>V2 Promise</h3>
+            <div>请在Console里面查看</div>
+            <script type="text/javascript">                
+                var P1 = v.classd(function () {
+                    this._namex = 'username';
+                    
+                    this._fun1 = function fun1() {
+                        this.fun3();
+                    };
+                    this.fun2 = function () {
+                        this._fun1();
+                    };
+                    this.fun3 = function () {
+                        console.info('p13');
+                        console.info(this._namex);
+                    };
+                });
+                
+                var P2 = v.classd(P1, function(){
+                    this.construct = function() {
+                        this._namex = 'pwd';
+                    };
+                    this.fun2 = function () {
+                        //this._namex = 'password';
+                        this._fun1();
+                    };
+                    this.fun3 = function () {
+                        console.info('p23');
+                        console.info(this._namex);
+                    };
+                });
+
+                var p1 = new P1();
+                //p1.fun1();
+                p1.fun2();
+                
+                var p2 = new P2();
+                p2.fun2();
+
+                function f2() {
+                    p1._namex = 'xxx';
+                    p1._fun1();
+                }
+                f2();
+
+            </script>
+        </div>
+    </body>
+</html>

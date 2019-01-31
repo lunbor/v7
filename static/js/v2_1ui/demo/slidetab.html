@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SlideShow v2</title>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            .slide-tab {
+
+            }
+            .slide-tab .tab-content img {
+                display: block;
+                width: 500px;
+            }.slide-tab .tab-content div {
+                display: none;
+                float: left;
+            }
+            .slide-tab .tab-toggles a {
+                padding: 15px;
+            }
+            .slide-tab .tab-toggles .on {
+                background: red;
+                color: #fff;
+            }
+            .img-center{
+                position: relative;
+                width: 100%;
+                height: 400px;
+                overflow: hidden;
+            }
+        </style>
+        <script type="text/javascript" src="../../jquery/jquery-last.min.js"></script>
+        <script type="text/javascript" src="../../v2.js"></script>
+        <script type="text/javascript" src="../slidetab.js"  ></script>
+    </head>
+    <body data-v-app="vApp">   
+        <div>
+            <h3>SlideTab Tab切换组件</h3>
+            <p>tab点击或鼠标移入切换内容。<br/>
+            </p>
+            <div class="slide-tab" data-slidetab="v2ui" data-options="autosec:2;speed:normal;effect:horizontal">
+                <div class="tab-toggles">
+                    <a class="tab-toggle on" data-target=".pic1">图1</a>
+                    <a class="tab-toggle" data-target=".pic2">图2</a>
+                    <a class="tab-toggle" data-target=".pic3">图3</a>
+                    <a class="tab-toggle" data-target=".pic4">图4</a>
+                    <a class="tab-toggle" data-target=".pic5">图5</a>
+                </div>
+                <div class="tab-content">
+                    <div class="pic1" style="display: block"><img src="1.jpg" /></div>
+                    <div class="pic2"><img src="2.jpg" /></div>
+                    <div class="pic3"><img src="3.jpg" /></div>
+                    <div class="pic4"><img src="4.jpg" /></div>
+                    <div class="pic5"><img src="5.jpg" /></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

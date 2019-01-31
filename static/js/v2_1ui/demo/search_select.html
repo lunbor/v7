@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SlideShow v2</title>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            .v-select-div{
+                background: #2c2845;
+                display: inline-block;
+            }
+            .v-select-div .v-selected-option-div .v-select-close-span{
+                display:inline-block; 
+                border:0 solid ; 
+                border-width:5px 5px 0; 
+                border-color:#eee #2c2845 ;
+                width:0; 
+                overflow:hidden;
+                height:0; 
+                float:right;
+                margin:8px;
+            }
+            .v-select-div .v-selected-option-div .v-select-open-span{
+                display:inline-block; 
+                border:0 solid ;
+                border-width:0px 5px 5px; 
+                border-color:#eee #2c2845 ;
+                width:0; 
+                overflow:hidden;
+                height:0; 
+                float:right;
+                margin:8px;
+            }
+            .v-select-div .v-selected-option-div{
+                overflow:hidden;
+                cursor: pointer;
+                color:#ddd7fb;
+                border:1px solid #2c2845;
+                height:25px;
+                line-height: 25px;
+                padding-left:3px
+            }
+            .v-select-div .v-search-div{
+                background: #2c2845;
+            }
+            .v-select-div .v-select-bottom-div{display:none;position:absolute;}
+            .v-select-div .v-options-div{
+                max-height:100px;
+                overflow-y: auto;
+                overflow-x: auto;
+                width:100px;
+                position:relative;
+                background: #373065;
+                color:#fff;
+            }
+            .v-select-div .v-select-option{
+                padding:2px 0px
+            }
+        </style>
+        <script type="text/javascript" src="../../jquery/jquery-last.min.js"></script>
+        <script type="text/javascript" src="../../v2.js"></script>
+        <script type="text/javascript" src="../searchselect.js"></script>
+    </head>
+    <body data-v-app="vApp">   
+        <div>
+            <select id="s" name='name' style="width:100px">
+                <option value='1'>全部</option>
+            </select>
+            <select id="s2" name='name' style="width:200px">
+                <option value='0'>0</option>
+                <option value='2'>1</option>
+                <option value='2'>2</option>
+                <option value='2'>3</option>
+                <option value='2'>4</option>
+                <option value='2'>5</option>
+                <option value='2'>6</option>
+                <option value='2'>7</option>
+                <option value='2'>8</option>
+                <option value='2'>9</option>
+                <option value='2'>10</option>
+                <option value='2'>11</option>
+                <option value='2'>12</option>
+                <option value='2'>13</option>
+            </select>
+            <select id="s3" name='name' style="width:200px">
+                <option value='0'>0</option>
+                <option value='2'>1</option>
+                <option value='2'>2</option>
+                <option value='2'>3</option>
+                <option value='2'>4</option>
+                <option value='2'>5</option>
+                <option value='2'>6</option>
+                <option value='2'>7</option>
+                <option value='2'>8</option>
+                <option value='2'>9</option>
+                <option value='2'>10</option>
+                <option value='2'>11</option>
+                <option value='2'>12</option>
+                <option value='2'>13</option>
+            </select>
+            <select id="s4" name='name' style="width:200px"></select>
+            <select id="s5" name='name' style="width:300px"></select>
+        </div>
+    </body>
+    <script>
+           var params={
+            search:true,
+            isAjax:true,
+            more:10,
+            getAjaxParams:function(sWord){
+                if(sWord==''){
+                    return {
+                        type: "POST",
+                        url: "searchjson.php",
+                        dataType:'json',
+                        data:{}//输入为空时ajax传值
+                    };
+                }
+                return {
+                    type: "POST",
+                    url: "searchjson.php",
+                    dataType:'json',
+                    data:{search_words:sWord,search_field:'name'}//{'search_words':'123','search_field':'name'}ajax传值
+                };
+            },
+            getResults:function(data,params){
+                params.page = params.page || 1;
+                if(params.page === 1){
+                    params.temp =[{id: '', name: '全部用户'}];
+                }
+                if (data.length > 0) {
+                    for (var key in data) {
+                        params.temp.push({id: data[key].id, name: data[key].name});
+                    }
+                }
+                return {
+                    results: params.temp
+                };
+            },
+            templateResult:function (repo) {//option
+                var markup = '<div>' +'<div id="' + repo.id + '" class="v-select-option">' + repo.name + '</div>' +'</div>';
+                return markup;
+            }
+        };
+        $('#s').select(params);//用法1：带搜索框，数据来自ajax
+        $('#s2').select({search:true});//用法2：带搜索框，数据为页面select中的option
+        $('#s3').select();//用法3：不带搜索框，数据为页面select中的option
+        $('#s4').select({//用法4：带搜索框，数据为传入的json数据
+            search:true,
+            more:10,
+            data:[  
+                    {'id':'022',name:'0111'},
+                    {'id':'1',name:'1'},
+                    {'id':'2',name:'2'},
+                    {'id':'3',name:'3'},
+                    {'id':'4',name:'4'},
+                    {'id':'5',name:'5'},
+                    {'id':'6',name:'6'},
+                    {'id':'7',name:'7'},
+                    {'id':'8',name:'8'},
+                    {'id':'9',name:'9'},
+                    {'id':'10',name:'10'},
+                    {'id':'11',name:'11'},
+                    {'id':'12',name:'12'},
+                    {'id':'13',name:'13'},
+                    {'id':'14',name:'14'},
+                    {'id':'15',name:'15'},
+                    {'id':'16',name:'16'},
+                    {'id':'17',name:'17'},
+                ]
+        });
+        $('#s5').select({//用法5：不带搜索框，数据为传入的json数据
+            data:[  
+                    {'id':'022',name:'0111'},
+                    {'id':'1',name:'1'},
+                    {'id':'2',name:'2'},
+                    {'id':'3',name:'3'},
+                    {'id':'4',name:'4'},
+                    {'id':'5',name:'5'},
+                    {'id':'6',name:'6'},
+                    {'id':'7',name:'7'},
+                    {'id':'8',name:'8'},
+                    {'id':'9',name:'9'},
+                    {'id':'10',name:'10'},
+                    {'id':'11',name:'11'},
+                    {'id':'12',name:'12'},
+                    {'id':'13',name:'13'},
+                    {'id':'14',name:'14'},
+                    {'id':'15',name:'15'},
+                    {'id':'16',name:'16'},
+                    {'id':'17',name:'17'},
+                ]
+        });
+    </script>
+</html>

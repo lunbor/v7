@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>Validity demo</title>
+        <script type="text/javascript" src="../../v6.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form data-validity="v2ui" onsubmit="return false;" name="reg-form">
+                <ul>
+                    <li>
+                        <label>用户名</label><input type="text" name="username" data-valid="*; length, 6, 16; alnum" />
+                        <label for="username" id="usernamefor"></label>
+                    </li>
+                    <li>
+                        <label>密码</label><input type="password" id="reg_password" name="password" data-valid="*; length, 6, 16" />
+                        <label for="password"></label>
+                    </li>
+                    <li>
+                        <label>重复密码</label><input type="password" name="repasswd" data-valid="*; length, 6, 16; equal, #reg_password" />
+                        <label for="repasswd"></label>
+                    </li>
+                </ul>
+                <button type="submit">提交</button>
+                <label for="reg-form"></label>
+            </form>
+        </div>
+        <script type="text/javascript">
+            v.$('[name="reg-form"]').on('submit', function () {
+                //event.stopPropagation();
+                //event.preventDefault();
+                var rs, obj = v.Validity.obj(this);
+                rs = obj.checkValid();
+                obj.setValid(rs ? '搞正确了！' : '搞错没哟');
+            });
+            v.load('../validity.js');
+        </script>
+    </body>
+</html>

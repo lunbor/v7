@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>Select demo</title>
+        <script type="text/javascript" src="../../v6.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h3>Select单选多选组件</h3>
+            <div class="select-box" >
+                <input type="text" v-select="datalist:select;" />
+                <select multiple="multiple" style="display:none;">
+                    <option value="1">zhangsan</option>
+                    <option value="2">李四</option>
+                </select>
+            </div>
+            <p style="height:1000px;">我占个位置</p>
+        </div>
+        <script type="text/javascript">
+            v.load('../select.js');
+        </script>
+    </body>
+</html>

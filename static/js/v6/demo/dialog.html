@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>Validity demo</title>
+        <link rel="stylesheet" href="../../../css/animate.css" />
+        <script type="text/javascript" src="../../v6.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                color: red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h3>AlertBox 提示对话框组件</h3>
+            <p>点击触发按钮，弹出对话框，也可v.alert(message)<br/>
+            </p>
+            <div>
+                <button class="alert-toggle" data-message="你确定点的是按钮2" data-options="mask:false;position:auto;onok:alertBoxOk">点我，tooltip样式，自动定位，请滚动鼠标</button>
+                <button class="alert-toggle" data-message="你确定点的是按钮3" data-options="mask:false;position:bottom;">点我，下边tooltip样式，请滚动鼠标</button>
+                <button onclick="alertboxTest()">点我，居中对话框，程序调用</button>
+            </div>
+            <div class="alert-box" v-alertbox="closel:.close;" style="display:none; background: #fff; border: 1px solid; box-shadow: 2px 0 3px; padding: 2em;">
+                <div class="message" style="padding: 1em;">xxddx</div>
+                <button class="ok" style="text-align: center;">确定</button>
+            </div>
+            <p style="height:1000px;">我占个位置</p>
+            <script type="text/javascript">
+                function alertboxTest() {
+                    v.alert('这是程序弹出的对话框');
+                }
+                function alertBoxOk(event) {
+                    alert('确定了我');
+                }
+            </script>
+        </div>
+        <script type="text/javascript">
+            v.load('../dialog.js');
+        </script>
+    </body>
+</html>

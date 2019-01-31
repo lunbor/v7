@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>LazyLoad demo V2_2</title>
+        <link rel="stylesheet" href="../../../css/animate.css" />
+        <script type="text/javascript" src="../../v2_2.js"></script>
+        <script type="text/javascript" src="../../jquery.min.js"></script>
+        <style type="text/css">
+            .lazyload div {}
+            .lazyload img {background: url(img/loading.gif) 50% no-repeat; width: 400px;}
+        </style>
+    </head>
+    <body>   
+        <div class="lazyload"  v-lazyload="srcattr:realsrc;effect:fade">
+            <div>
+                <img  src="img/seaside-ipad.jpg" realsrc="img/1.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/2.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/3.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/4.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/4.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/3.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/2.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/1.jpg" />
+            </div>
+            <div>
+                <img  src="img/seaside-ipad.jpg"  realsrc="img/5.jpg" />
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            v.load('../lazyload.js');
+        </script>
+
+    </body>
+</html>

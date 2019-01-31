@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SlideShow v2</title>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .dragtar {
+                width: 100px;
+                height:100px;
+                background: blue;
+            }
+            .dragtar .title {
+                background: green;
+            }
+            .droptar {
+                position: relative;
+                width: 200px;
+                height: 250px;
+                background: red;
+                cursor: pointer;
+            }
+            .splitbox {
+                height: 400px;
+            }
+            
+        </style>
+        <script type="text/javascript" src="../../jquery/jquery-last.min.js"></script>
+        <script type="text/javascript" src="../../v2.js"></script>
+        <script type="text/javascript" src="../drag.js"  ></script>
+    </head>
+    <body data-v-app="vApp">
+        <p>&nbsp;</p>
+        <div>拖动不到这个地方来的</div> 
+        <p>&nbsp;</p>
+        <div class="tribox">
+            <h3>DragDrp 拖拽组件</h3>
+            <p>拖动组建到某个对象。<br/>
+            </p>
+            <div class="dragtar" data-dragdrop="v2ui" data-options="dragtar:.title;tribox:.tribox; hold:false; droptar:.droptar">
+                <div class="title">
+                拖动我
+                </div>
+                <p>我是内容，点这里不能拖</p>
+            </div>
+            <p class=splitbox>隔开点距离</p>
+            <div class="droptar">
+                拖在我这儿来
+            </div>
+        </div>
+        <div>
+            <p>&nbsp;</p>
+            <p>这个地方也拖不来</p>
+            <p>&nbsp;</p>
+        </div>
+        <script type="text/javascript">
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript v3 手册</title>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            .slide-show {
+                position: relative;
+                width: 200px;
+                height: 250px;
+                overflow: hidden;
+            }
+            .slide-show .slide-roll {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                white-space: nowrap;
+                font-size: 0px;
+            }
+            .slide-show .slide-roll li {
+                margin: 0;
+                padding: 0;
+                width: 200px;
+                vertical-align: top;
+                display: inline-block;
+                *display: inline;
+            }
+            .slide-show .slide-roll img {
+                width: 200px;
+            }
+            .slide-show .slide-hand {
+                position: absolute;
+                top: 30px;
+            }
+            .slide-show .slide-hand a{
+                padding: 5px;
+                margin: 5px;
+                background: #fff;
+            }
+            .slide-show .slide-hand a.selected {
+                background: red;
+                color: #fff;
+            }
+            .slide-tab {
+
+            }
+            .slide-tab .tab-content img {
+                display: block;
+                width: 500px;
+            }.slide-tab .tab-content div {
+                display: none;
+            }
+            .slide-tab .tab-toggles a {
+                padding: 15px;
+            }
+            .slide-tab .tab-toggles .on {
+                background: red;
+                color: #fff;
+            }
+            .img-center{
+                position: relative;
+                width: 100%;
+                height: 400px;
+                overflow: hidden;
+            }
+            .pop-box {
+
+            }
+        </style>
+        <script type="text/javascript" src="../jquery.min.js"></script>
+        <script type="text/javascript" src="../v2_1.js"></script>
+        <script type="text/javascript" src="../t1.js"></script>
+    </head>
+    <body data-v-app="vApp">
+        <h1>JavaScript v2 ui demo</h1>
+        <div>
+            <h3>SlideShow 幻灯切换组件</h3>
+            <p>幻灯切换组件按上下，左右切换幻灯内容。<br/>
+            </p>
+            <div class="slide-show" data-slideshow="v2ui" data-options="rollel:.slide-roll; handel:.slide-hand; prevel:.slide-prev; nextel:.slide-next; autosec:2;">
+                <a class="slide-prev">&lt;</a>
+                <a class="slide-next">&gt;</a>
+                <ul class="slide-roll">
+                    <li><img src="demo/1.jpg" /></li><!--
+                    --><li><img src="demo/2.jpg" /></li><!--
+                    --><li><img src="demo/3.jpg" /></li><!--
+                    --><li><img src="demo/4.jpg" /></li><!--
+                    --><li><img src="demo/5.jpg" /></li>
+                </ul>
+                <div class="slide-hand">
+                    <a><span>1</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>PopBox 弹出对话框组件</h3>
+            <p>点击触发按钮，弹出对话框，也可以弹出菜单<br/>
+            </p>
+            <div id="popbox_toggle">
+                <button class="pop-toggle1">点我，不定义位置</button>
+                <button class="pop-toggle2">点我，tooltip样式，请滚动鼠标</button>
+                <button class="pop-toggle3">点我，居中对话框，请滚动鼠标</button>
+            </div>
+            <div class="pop-box" data-popbox="v2ui" data-options="tribox:#popbox_toggle; toggle:.pop-toggle2; position:right; closel:.close; mask:false;" data-events="show:boxshow()" style="display:none;">
+                <div class="close">关闭</div>
+                <div class="pic1"><img src="demo/1.jpg" /></div>
+            </div>
+            <div class="pop-box" data-popbox="v2ui" data-options="tribox:#popbox_toggle; toggle:.pop-toggle3; position:middle; closel:.close; mask:true; closesec:10;" data-events="show:boxshow()" style="display:none;">
+                <div class="close">关闭</div>
+                <div class="pic1"><img src="demo/4.jpg" /></div>
+            </div>
+            <div class="pop-box" data-popbox="v2ui" data-options="tribox:#popbox_toggle; toggle:.pop-toggle1;" data-events="show:boxshow()" style="display:none;">
+                <div class="pic1"><img src="demo/2.jpg" /></div>
+            </div>
+            <script type="text/javascript">
+                function boxshow() {
+                    //setTimeout("alert('显示对话框！')", 1000);
+                }
+            </script>
+        </div>
+
+        <div>
+            <h3>AlertBox 提示对话框组件</h3>
+            <p>点击触发按钮，弹出对话框，也可v.alert(message)<br/>
+            </p>
+            <div>
+                <button class="alert-toggle" data-message="你确定点的是按钮2" data-options="mask:false;position:auto;onok:alertBoxOk">点我，tooltip样式，自动定位，请滚动鼠标</button>
+                <button class="alert-toggle" data-message="你确定点的是按钮3" data-options="mask:false;position:bottom;">点我，下边tooltip样式，请滚动鼠标</button>
+                <button onclick="alertboxTest()">点我，居中对话框，程序调用</button>
+            </div>
+            <div class="alert-box" data-alertbox="v2ui" data-options="closel:.close;" style="display:none; background: #fff; border: 1px solid; box-shadow: 2px 0 3px; padding: 2em;">
+                <div class="message" style="padding: 1em;">xxddx</div>
+                <button class="ok" style="text-align: center;">确定</button>
+            </div>
+            <script type="text/javascript">
+                function alertboxTest() {
+                    v.alert('这是程序弹出的对话框');
+                }
+                function alertBoxOk(event) {
+                    alert('确定了我');
+                }
+            </script>
+        </div>
+
+        <div>
+            <h3>ConfirmBox 确认话框组件</h3>
+            <p>点击触发按钮，弹出确认对话框，也可v.confirm(message, fn)<br/>
+            </p>
+            <div>
+                <button class="confirm-toggle" data-message="你确定点的是按钮2" data-options="mask:false;position:auto;onok:confirmBoxOk;">点我，tooltip样式，自动定位</button>
+                <button onclick="confirmBoxTest()">点我，居中对话框，程序调用</button>
+            </div>
+            <div class="confirm-box" data-dragdrop="v2ui" data-confirmbox="v2ui" data-options="closel:.close; toggle:.confirm-toggle" style="display:none; background: #fff; border: 1px solid; box-shadow: 2px 0 3px; padding: 2em;">
+                <div class="message" style="padding: 1em;"></div>
+                <button class="ok">确定</button>
+                <button class="close">取消</button>
+            </div>
+            <script type="text/javascript">
+                function confirmBoxTest() {
+                    v.confirm('你确定要这样干？', confirmBoxOk);
+                }
+                function confirmBoxOk(event) {
+                    v.alert('还真这样干了！！！');
+                }
+            </script>
+        </div>
+        <div>
+            <h3>SlideTab Tab切换组件</h3>
+            <p>tab点击或鼠标移入切换内容。<br/>
+            </p>
+            <div class="slide-tab" data-slidetab="v2ui" data-options="autosec:2;speed:normal;">
+                <div class="tab-toggles">
+                    <a class="tab-toggle on" data-target=".pic1">图1</a>
+                    <a class="tab-toggle" data-target=".pic2">图2</a>
+                    <a class="tab-toggle" data-target=".pic3">图3</a>
+                    <a class="tab-toggle" data-target=".pic4">图4</a>
+                    <a class="tab-toggle" data-target=".pic5">图5</a>
+                </div>
+                <div class="tab-content">
+                    <div class="pic1" style="display: block"><img src="demo/1.jpg" /></div>
+                    <div class="pic2"><img src="demo/2.jpg" /></div>
+                    <div class="pic3"><img src="demo/3.jpg" /></div>
+                    <div class="pic4"><img src="demo/4.jpg" /></div>
+                    <div class="pic5"><img src="demo/5.jpg" /></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+                <h3>xxx</h3>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            $(function () {
+                v.load('slideshow.js');
+                v.load('slidetab.js');
+                v.load('dialog.js');
+                v.load('dragdrop.js');
+                //v.load('t1.js');
+            });
+            /*
+             var p1 = v.when([1, 2, 3, 4], function (val, k, fn) {
+             fn();
+             return val * 2;
+             });
+             var p2 = v.when(function (fn) {
+             setTimeout(function () {
+             console.info('s');
+             fn(40);
+             }, 1000);
+             });
+             v.when([p1, p2]).then(function (rs) {
+             console.info('over');
+             });*/
+
+
+        </script>
+    </body>
+</html>

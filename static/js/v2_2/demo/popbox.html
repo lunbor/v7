@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>PopBox demo V2_2</title>
+        <link rel="stylesheet" href="../../../css/animate.css" />
+        <script type="text/javascript" src="../../v2_2.js"></script>
+        <script type="text/javascript" src="../../jquery.min.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                color: red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h3>PopBox 弹出对话框组件</h3>
+            <p>点击触发按钮，弹出对话框，也可以弹出菜单<br/>
+            </p>
+            <div id="popbox_toggle">
+                <button class="pop-toggle1">点我，不定义位置</button>
+                <button class="pop-toggle2">点我，tooltip样式，请滚动鼠标</button>
+                <button class="pop-toggle3">点我，居中对话框，请滚动鼠标</button>
+            </div>
+            <div class="pop-box" v-popbox="toggle:.pop-toggle2; position:right; closel:.close; mask:false;" style="display:none;">
+                <div class="close">关闭</div>
+                <div class="pic1"><img src="img/1.jpg" /></div>
+            </div>
+            <div class="pop-box" v-popbox="toggle:.pop-toggle3; position:middle; closel:.close; mask:true; closesec:10;" style="display:none;">
+                <div class="close">关闭</div>
+                <div class="pic1"><img src="img/4.jpg" /></div>
+            </div>
+            <div class="pop-box" v-popbox="toggle:.pop-toggle1;events:{show:boxshow()}" style="display:none;">
+                <div class="pic1"><img src="img/2.jpg" /></div>
+            </div>
+        </div>
+        <div>
+            <p style="height: 100em;">我用来占位</p>
+        </div>
+        <script type="text/javascript">
+            function boxshow() {
+                //setTimeout("alert('显示对话框！')", 1000);
+            }
+            v.load('../popbox.js');
+        </script>
+    </body>
+</html>

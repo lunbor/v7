@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>V6 demo</title>
+        <script type="text/javascript" src="../../v6.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                color: red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h3>V6 function domJson</h3>
+            <form id="domjson">
+                <input name="username" />
+                <div class="radio-group">
+                    <p class="radio-title">账户状态</p>
+                    <label class="radiobox"><input type="radio" name="status" value="-1"><i></i><span>禁用账户</span></label>
+                    <label class="radiobox"><input type="radio" name="status" value="1"><i></i><span>启用账户</span></label>    
+                </div>
+            </form>
+            <script type="text/javascript">
+                // 模板处理
+                let s1 = undefined;
+                console.info(s1===undefined);
+                var template = `
+                    <ul>
+                      <% for(var i=0; i < supplies.length; i++) { %>
+                        <li><%= supplies[i] %></li>
+                      <% } %>
+                    </ul>
+                    `;
+                var vals = {supplies: ['daojon', 'knyon']};
+                console.info(v.strParse(template, vals));
+            </script>
+        </div>
+    </body>
+</html>

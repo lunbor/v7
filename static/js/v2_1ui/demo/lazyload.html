@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>图片延迟加载--JavaScript v3 手册</title>
+        <style type="text/css">
+            .lazyload div {height: 490px;}
+            .lazyload img {background: url(loading.gif) 50% no-repeat; width: 400px;}
+        </style>
+        <script type="text/javascript" src="../../jquery/jquery-last.min.js"></script>
+        <script type="text/javascript" src="../../v2.js"></script>
+    </head>
+    <body data-v-app="vApp">   
+        <div class="lazyload"  data-lazyload="v2ui" data-options="srcattr:realsrc;effect:slide">
+            <div>
+                <img  src="seaside-ipad.jpg" realsrc="1.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="2.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="3.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="4.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="4.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="3.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="2.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+                <img  src="seaside-ipad.jpg"  realsrc="1.jpg" />
+            </div>
+            <div>
+                <img  src="seaside-ipad.jpg"  realsrc="5.jpg" />
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            $(function () {
+                v.load('../lazyload.js');
+            });
+        </script>
+
+    </body>
+</html>
